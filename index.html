@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WS Estamparia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-600">WS Estamparia</h1>
+    <nav class="flex items-center gap-6">
+      <ul class="flex gap-6 text-sm md:text-base">
+        <li><a href="#home" class="hover:text-indigo-600">Home</a></li>
+        <li><a href="#produtos" class="hover:text-indigo-600">Produtos</a></li>
+        <li><a href="#contato" class="hover:text-indigo-600">Contato</a></li>
+      </ul>
+      <button id="cart-btn" class="relative bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+        Carrinho
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="bg-indigo-600 text-white py-20 px-6 text-center">
+    <h2 class="text-5xl font-extrabold mb-4">Personalize do seu jeito!</h2>
+    <p class="text-xl mb-8">Camisetas, canecas e toalhas personalizadas com qualidade e carinho.</p>
+    <a href="#produtos" class="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition">Ver Produtos</a>
+  </section>
+
+  <!-- Produtos -->
+  <section id="produtos" class="py-16 px-6 max-w-6xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-12">Nossos Produtos</h3>
+    <div class="grid md:grid-cols-3 gap-10">
+      <!-- Camiseta -->
+      <div class="product bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition" data-id="1" data-price="59.90">
+        <img src="3-1.png" alt="Camiseta" class="w-full">
+        <div class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">Camisetas Personalizadas</h4>
+          <p class="text-gray-600 mb-4">Estampas criativas, únicas e com o seu estilo.</p>
+          <button class="add-to-cart bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition">Adicionar & Ir ao Carrinho</button>
+        </div>
+      </div>
+      <!-- Caneca -->
+      <div class="product bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition" data-id="2" data-price="39.90">
+        <img src="canecas.webp" alt="Caneca" class="w-full">
+        <div class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">Canecas Personalizadas</h4>
+          <p class="text-gray-600 mb-4">Para presentear ou começar o dia com mais estilo.</p>
+          <button class="add-to-cart bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition">Adicionar & Ir ao Carrinho</button>
+        </div>
+      </div>
+      <!-- Toalha -->
+      <div class="product bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition" data-id="3" data-price="49.90">
+        <img src="toalhas.jpg" alt="Toalha" class="w-full">
+        <div class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">Toalhas Personalizadas</h4>
+          <p class="text-gray-600 mb-4">Qualidade e personalidade para o seu dia a dia.</p>
+          <button class="add-to-cart bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition">Adicionar & Ir ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulário de Contato -->
+  <section id="contato" class="py-16 px-6 bg-white shadow-md rounded-2xl max-w-4xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-8">Fale Conosco</h3>
+    <form id="contact-form" class="space-y-6">
+      <div>
+        <label class="block font-medium mb-1">Nome</label>
+        <input type="text" name="nome" placeholder="Seu nome" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+      <div>
+        <label class="block font-medium mb-1">E-mail</label>
+        <input type="email" name="email" placeholder="seu@email.com" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+      <div>
+        <label class="block font-medium mb-1">Mensagem</label>
+        <textarea name="mensagem" rows="5" placeholder="Escreva sua mensagem" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+      <button type="submit" class="block mx-auto bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700 transition">Enviar Mensagem</button>
+    </form>
+  </section>
+
+  <!-- Carrinho Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white w-11/12 md:w-1/2 p-6 rounded-2xl relative shadow-lg">
+      <button id="close-cart" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+      <h3 class="text-2xl font-bold mb-4">Seu Carrinho</h3>
+      <ul id="cart-items" class="divide-y divide-gray-200 mb-4 max-h-64 overflow-y-auto"></ul>
+      <div class="flex justify-between items-center font-semibold text-lg mb-4">
+        <span>Total:</span>
+        <span id="cart-total">R$ 0,00</span>
+      </div>
+      <button id="finish-btn" class="w-full bg-green-600 text-white py-3 rounded-full hover:bg-green-700 transition">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <script>
+    const cart = [];
+    const cartBtn = document.getElementById('cart-btn');
+    const cartCount = document.getElementById('cart-count');
+    const cartModal = document.getElementById('cart-modal');
+    const closeCart = document.getElementById('close-cart');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const contactForm = document.getElementById('contact-form');
+    const finishBtn = document.getElementById('finish-btn');
+
+    // Carregar do localStorage
+    const saved = JSON.parse(localStorage.getItem('ws_cart') || '[]');
+    if (saved.length) saved.forEach(i => cart.push(i));
+    updateCartCount();
+
+    // Eventos do carrinho
+    cartBtn.addEventListener('click', () => { renderCart(); cartModal.classList.remove('hidden'); });
+    closeCart.addEventListener('click', () => cartModal.classList.add('hidden'));
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const prod = btn.closest('.product');
+        const id = prod.dataset.id;
+        const name = prod.querySelector('h4').innerText;
+        const price = parseFloat(prod.dataset.price);
+        const exists = cart.find(i => i.id === id);
+        if (exists) exists.qty++; else cart.push({ id, name, price, qty: 1 });
+        updateCartCount(); renderCart(); cartModal.classList.remove('hidden');
+      });
+    });
+
+    // Enviar mensagem por email
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const nome = contactForm.nome.value;
+      const email = contactForm.email.value;
+      const msg = contactForm.mensagem.value;
+      const body = encodeURIComponent(`Nome: ${nome}\nEmail: ${email}\nMensagem: ${msg}`);
+      window.location.href = `mailto:admpedrosarda@gmail.com?subject=Contato WS Estamparia&body=${body}`;
+    });
+
+    // Finalizar via WhatsApp
+    finishBtn.addEventListener('click', () => {
+      const lines = cart.map(i => `${i.name} x${i.qty} - R$ ${(i.price*i.qty).toFixed(2)}`);
+      const total = cart.reduce((s,i) => s + i.price*i.qty, 0).toFixed(2);
+      const text = encodeURIComponent(`Olá, gostaria de finalizar meu pedido:\n${lines.join('\n')}\nTotal: R$ ${total}`);
+      window.open(`https://wa.me/5548984900927?text=${text}`, '_blank');
+    });
+
+    function updateCartCount() {
+      const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+      cartCount.textContent = totalQty;
+      localStorage.setItem('ws_cart', JSON.stringify(cart));
+    }
+
+    function renderCart() {
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price*item.qty;
+        const li = document.createElement('li');
+        li.className = 'py-2 flex justify-between items-center';
+        li.innerHTML = `
+          <div>
+            <p class="font-medium">${item.name} x${item.qty}</p>
+            <p class="text-sm text-gray-600">R$ ${(item.price*item.qty).toFixed(2)}</p>
+          </div>
+          <button class="remove-item text-red-500 hover:text-red-700" data-id="${item.id}">Remover</button>
+        `;
+        cartItems.appendChild(li);
+      });
+      cartTotal.textContent = `R$ ${total.toFixed(2)}`;
+      document.querySelectorAll('.remove-item').forEach(btn => btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const idx = cart.findIndex(i => i.id === id);
+        if (idx>-1) { cart.splice(idx,1); updateCartCount(); renderCart(); }
+      }));
+    }
+  </script>
+</body>
+</html>
+```
